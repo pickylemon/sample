@@ -22,7 +22,6 @@ String ctx = request.getContextPath();
                                 <p>You can sign in with your Id</p>
                             </div>
                             <!-- end .login_header -->
-
                             <div class="login--form">
                                 <div class="form-group">
                                     <label for="user_name">Id</label>
