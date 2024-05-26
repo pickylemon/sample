@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.portfolio.www.auth.repository.MemberRepository">
+
+    <insert id="save" parameterType="memberDto">
+    <!-- indent 주의 -->
+    INSERT INTO forum.`member`
+		   (member_id, passwd, member_nm, email, auth_yn, pwd_chng_dtm, join_dtm)
+	VALUES (#{memberId},#{passwd},#{memberNm},#{email},'','', DATE_FORMAT(NOW()  ,'%Y%m%d%H%i%s'))
+	</insert>
+	
+	<select id="getMemberSeq" parameterType="string" resultType="int">
+	SELECT member_seq FROM member 
+	 WHERE member_id = #{memberId}
+	</select>
+	
+	<update id="updateAuthValid" parameterType="int">
+	UPDATE forum.`member` 
+	   SET auth_yn = 'Y' 
+	 WHERE member_seq = #{memberSeq}
+	</update>
+	
+	<select id="findById" parameterType="string" resultType="MemberDto">
+	SELECT * FROM forum.`member` 
+	 WHERE member_id = #{memberId}
+	</select>
+	
+	
+	<select id="findBySeq" parameterType="int" resultType="MemberDto">
+	SELECT * FROM forum.`member` 
+	 WHERE member_seq = #{memberSeq}
+	</select>
+	
+</mapper>
